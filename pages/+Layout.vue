@@ -8,7 +8,7 @@
     un-bg="white/80 dark:slate-900/80"
     un-border-b="1 slate-200 dark:slate-800"
   >
-    AviUtl2 Catalog Badge
+    <a href="/">AviUtl2 Catalog Badge</a>
   </header>
   <div un-p="4">
     <slot />
