@@ -5,7 +5,7 @@ import { usePageContext } from "vike-vue/usePageContext";
 
 const pageContext = usePageContext();
 const id = computed(() => pageContext.routeParams.id);
-const url = computed(() => `aviutl2-catalog://packages/${id.value}`);
+const url = computed(() => `aviutl2-catalog://package/${id.value}`);
 
 onMounted(() => {
   if (import.meta.env.DEV) {
