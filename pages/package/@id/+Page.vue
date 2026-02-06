@@ -8,7 +8,11 @@ const id = computed(() => pageContext.routeParams.id);
 const url = computed(() => `aviutl2-catalog://package/${id.value}`);
 
 onMounted(() => {
-  // window.location.href = url.value;
+  if (import.meta.env.DEV) {
+    console.log("Skipping redirect in development mode");
+    return;
+  }
+  window.location.href = url.value;
 });
 </script>
 
