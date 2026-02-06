@@ -19,7 +19,7 @@ const badgeUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  const apiUrl = `https://aviutl2-catalog-badge.sevenc7c.workers.dev/api/badges/${encodeURIComponent(
+  const apiUrl = `https://aviutl2-catalog-badge.sevenc7c.workers.dev/api/badge/${encodeURIComponent(
     packageId.value,
   )}`;
   return `https://img.shields.io/endpoint?url=${encodeURIComponent(apiUrl)}`;
