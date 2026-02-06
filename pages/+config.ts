@@ -7,8 +7,8 @@ import vikeVue from "vike-vue/config";
 
 export default {
   // https://vike.dev/head-tags
-  title: "My Vike App",
-  description: "Demo showcasing Vike",
+  title: "AviUtl2 Catalog Badge",
+  description: "AviUtl2 Catalogの非公式バッジ。",
 
   extends: [vikeVue, vikePhoton],
 

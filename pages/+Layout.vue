@@ -1,55 +1,49 @@
 <!-- https://vike.dev/Layout -->
 
 <template>
-  <div class="layout">
-    <Sidebar>
-      <Logo />
-      <Link href="/"> Welcome </Link>
-      <Link href="/todo"> Todo </Link>
-      <Link href="/star-wars"> Data Fetching </Link>
-    </Sidebar>
-    <Content><slot /></Content>
+  <header
+    un-p="4"
+    un-text="2xl"
+    un-font="bold"
+    un-bg="white/80 dark:slate-900/80"
+    un-border-b="1 slate-200 dark:slate-800"
+  >
+    AviUtl2 Catalog Badge
+  </header>
+  <div un-p="4">
+    <slot />
   </div>
+  <div un-flex-grow />
+  <footer
+    un-bg="white/80 dark:slate-900/80"
+    un-p="2"
+    un-text="center xs slate-500 dark:slate-400 sm"
+    un-border-t="1 slate-200 dark:slate-800"
+  >
+    <a
+      href="https://github.com/sevenc-nanashi/aviutl2-catalog-badge"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="link"
+      >AviUtl2 Catalog Badge</a
+    >
+    &copy; 2026
+    <a
+      href="https://sevenc7c.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="link"
+      un-text="![#48b0d5]"
+      >Nanashi.</a
+    >
+    / このページはAviUtl2 Catalogと関係のない非公式のページです。
+  </footer>
 </template>
 
 <script lang="ts" setup>
-import Content from "../components/Content.vue";
-import Link from "../components/Link.vue";
-import Logo from "../components/Logo.vue";
-import Sidebar from "../components/Sidebar.vue";
+import "@unocss/reset/tailwind-v4.css";
+import "@fontsource/noto-sans-jp/400.css";
+import "@fontsource/noto-sans-jp/700.css";
+import "virtual:uno.css";
+import "./style.css";
 </script>
-
-<style>
-body {
-  margin: 0;
-  font-family: sans-serif;
-}
-* {
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-}
-</style>
-
-<style scoped>
-.layout {
-  display: flex;
-  max-width: 900px;
-  margin: auto;
-}
-.content {
-  padding: 20px;
-  padding-bottom: 50px;
-  min-height: 100vh;
-  flex-grow: 1;
-}
-/* Page Transition Animation */
-#page-content {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-}
-body.page-transition #page-content {
-  opacity: 0;
-}
-</style>

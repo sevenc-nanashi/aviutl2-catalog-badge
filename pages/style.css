@@ -1,0 +1,45 @@
+body {
+}
+
+#app {
+  min-height: 100vh;
+  background: light-dark(theme("colors.slate.50"), theme("colors.slate.950"));
+  color: light-dark(theme("colors.slate.800"), theme("colors.slate.100"));
+  font-family: theme("font.sans");
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  background: light-dark(theme("colors.white"), theme("colors.slate.800"));
+  border: 1px solid
+    light-dark(theme("colors.slate.200"), theme("colors.slate.700"));
+  border-radius: theme("radius.lg");
+  color: light-dark(theme("colors.slate.900"), theme("colors.slate.100"));
+  font-size: theme("text.sm.fontSize");
+
+  @apply px-3 py-2 transition focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm;
+}
+
+code {
+  background: light-dark(theme("colors.slate.100"), theme("colors.slate.800"));
+  padding: theme("spacing");
+  border-radius: theme("radius.md");
+  font-family: theme("font.mono");
+  font-size: theme("text.sm.fontSize");
+}
+
+a.link {
+  color: light-dark(theme("colors.blue.600"), theme("colors.blue.400"));
+  display: inline-flex;
+  align-items: center;
+  word-break: break-all;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
