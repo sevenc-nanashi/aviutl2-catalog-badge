@@ -44,7 +44,7 @@ app.get("/api/badge/:name", async (c) => {
 
   return c.json({
     schemaVersion: 1,
-    iconSvg: icon,
+    logoSvg: icon,
     label: "Catalog",
     message: packageData["latest-version"],
     color: "cyan",
