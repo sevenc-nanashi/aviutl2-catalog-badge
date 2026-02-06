@@ -11,7 +11,7 @@ const pageUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  return `https://aviutl2-catalog-badge.sevenc-nanashi.dev/packages/${encodeURIComponent(
+  return `https://aviutl2-catalog-badge.sevenc7c.workers.dev/package/${encodeURIComponent(
     packageId.value,
   )}`;
 });
