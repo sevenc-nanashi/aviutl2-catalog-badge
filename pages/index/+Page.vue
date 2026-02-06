@@ -57,9 +57,15 @@ const htmlCode = computed(() => {
         </Switch>
       </template>
 
-      <div un-space-y="2">
-        以下のコードをコピーして、READMEなどに貼り付けてください。
+      <div un-space-y="4">
+        <p>以下のコードをコピーして、READMEなどに貼り付けてください。</p>
         <CodeBlock :code="choice === 'markdown' ? markdownCode : htmlCode" />
+
+        <p>
+          プレビュー：
+          <img v-if="packageId" :src="badgeUrl" alt="AviUtl2 Catalog Badge" un-inline-block />
+          <span v-else>パッケージIDを入力してください。</span>
+        </p>
       </div>
     </Card>
   </div>
