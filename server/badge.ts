@@ -1,25 +1,24 @@
 import { enhance, type UniversalHandler } from "@universal-middleware/core";
 
-export const createTodoHandler: UniversalHandler<Universal.Context & object> =
-  enhance(
-    async (request, _context, _runtime) => {
-      // In a real case, user-provided data should ALWAYS be validated with tools like zod
-      const newTodo = (await request.json()) as { text: string };
+export const createTodoHandler: UniversalHandler<Universal.Context & object> = enhance(
+  async (request, _context, _runtime) => {
+    // In a real case, user-provided data should ALWAYS be validated with tools like zod
+    const newTodo = (await request.json()) as { text: string };
 
-      // This is where you'd persist the data
-      console.log("Received new todo", newTodo);
+    // This is where you'd persist the data
+    console.log("Received new todo", newTodo);
 
-      return new Response(JSON.stringify({ status: "OK" }), {
-        status: 200,
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-    },
-    {
-      name: "au2c-web:badge-handler",
-      path: `/api/badge/:packageId`,
-      method: ["GET"],
-      immutable: false,
-    },
-  );
+    return new Response(JSON.stringify({ status: "OK" }), {
+      status: 200,
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+  },
+  {
+    name: "au2c-web:badge-handler",
+    path: `/api/badge/:packageId`,
+    method: ["GET"],
+    immutable: false,
+  },
+);

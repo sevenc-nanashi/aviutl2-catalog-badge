@@ -26,13 +26,8 @@ onMounted(() => {
       <a :href="url" class="link">{{ url }}</a>
     </Card>
     <Card>
-      <p>
-        AviUtl2
-        Catalogをインストールしていない場合、以下のリンクからインストールしてください：
-      </p>
-      <a href="https://github.com/neosku/aviutl2-catalog" class="link"
-        >Neosku/aviutl2-catalog</a
-      >
+      <p>AviUtl2 Catalogをインストールしていない場合、以下のリンクからインストールしてください：</p>
+      <a href="https://github.com/neosku/aviutl2-catalog" class="link">Neosku/aviutl2-catalog</a>
     </Card>
   </div>
 </template>

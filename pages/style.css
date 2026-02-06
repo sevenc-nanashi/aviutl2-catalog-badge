@@ -16,8 +16,7 @@ input[type="password"],
 textarea,
 select {
   background: light-dark(theme("colors.white"), theme("colors.slate.800"));
-  border: 1px solid
-    light-dark(theme("colors.slate.200"), theme("colors.slate.700"));
+  border: 1px solid light-dark(theme("colors.slate.200"), theme("colors.slate.700"));
   border-radius: theme("radius.lg");
   color: light-dark(theme("colors.slate.900"), theme("colors.slate.100"));
   font-size: theme("text.sm.fontSize");

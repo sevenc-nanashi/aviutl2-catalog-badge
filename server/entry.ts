@@ -27,19 +27,14 @@ app.get("/api/badge/:name", async (c) => {
   )
     .then((res) => res.json())
     .then((data) => minimumCatalogSchema.parse(data));
-  const packageData = data.find(
-    (pkg) => pkg.id.toLowerCase() === name.toLowerCase(),
-  );
+  const packageData = data.find((pkg) => pkg.id.toLowerCase() === name.toLowerCase());
   if (!packageData) {
-    return c.json(
-      {
-        schemaVersion: 1,
-        label: "Catalog",
-        message: "not found",
-        color: "red",
-      },
-      404,
-    );
+    return c.json({
+      schemaVersion: 1,
+      label: "Catalog",
+      message: "not found",
+      color: "red",
+    });
   }
 
   return c.json({
@@ -47,7 +42,7 @@ app.get("/api/badge/:name", async (c) => {
     logoSvg: icon,
     label: "Catalog",
     message: packageData["latest-version"],
-    color: "cyan",
+    color: "#65CDD2",
   });
 });
 apply(app);
