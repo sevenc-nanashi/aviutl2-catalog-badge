@@ -45,6 +45,14 @@ app.get("/api/badge/:name", async (c) => {
     color: "#65CDD2",
   });
 });
+
+app.get("/badge/v/:packageName", (c) => {
+  const { packageName } = c.req.param();
+  const baseUrl = new URL(c.req.url).origin;
+  const apiUrl = `${baseUrl}/api/badge/${encodeURIComponent(packageName)}`;
+  const shieldsUrl = `https://img.shields.io/endpoint?url=${encodeURIComponent(apiUrl)}`;
+  return c.redirect(shieldsUrl);
+});
 apply(app);
 
 export default serve(app, {
