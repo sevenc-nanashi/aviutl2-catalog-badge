@@ -49,7 +49,9 @@ app.get("/api/badge/:name", async (c) => {
 app.get("/badge/v/:packageName", (c) => {
   const { packageName } = c.req.param();
   const baseUrl = new URL(c.req.url).origin;
+  // Encode packageName for use in URL path
   const apiUrl = `${baseUrl}/api/badge/${encodeURIComponent(packageName)}`;
+  // Encode the complete API URL for use as a query parameter
   const shieldsUrl = `https://img.shields.io/endpoint?url=${encodeURIComponent(apiUrl)}`;
   return c.redirect(shieldsUrl);
 });
