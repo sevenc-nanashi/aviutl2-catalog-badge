@@ -11,7 +11,7 @@ const pageUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  return `https://aviutl2-catalog-badge.sevenc7c.workers.dev/package/${encodeURIComponent(
+  return `${window.location.origin}/package/${encodeURIComponent(
     packageId.value,
   )}`;
 });
@@ -19,10 +19,9 @@ const badgeUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  const apiUrl = `https://aviutl2-catalog-badge.sevenc7c.workers.dev/api/badge/${encodeURIComponent(
+  return `${window.location.origin}/badge/v/${encodeURIComponent(
     packageId.value,
   )}`;
-  return `https://img.shields.io/endpoint?url=${encodeURIComponent(apiUrl)}`;
 });
 const markdownCode = computed(() => {
   if (!packageId.value) {
