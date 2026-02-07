@@ -11,7 +11,7 @@ const pageUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  return `https://aviutl2-catalog-badge.sevenc7c.workers.dev/package/${encodeURIComponent(
+  return `${window.location.origin}/package/${encodeURIComponent(
     packageId.value,
   )}`;
 });
@@ -19,7 +19,7 @@ const badgeUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  return `https://aviutl2-catalog-badge.sevenc7c.workers.dev/badge/v/${encodeURIComponent(
+  return `${window.location.origin}/badge/v/${encodeURIComponent(
     packageId.value,
   )}`;
 });
