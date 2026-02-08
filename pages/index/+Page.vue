@@ -3,25 +3,27 @@ import { computed, ref } from "vue";
 import Card from "../../components/Card.vue";
 import Switch from "../../components/Switch.vue";
 import CodeBlock from "../../components/CodeBlock.vue";
+import { debouncedComputed } from "../../lib/debouncedComputed";
 
-const choice = ref<"markdown" | "html">("markdown");
+const choices = {
+  markdown: "Markdown",
+  html: "HTML",
+  url: "URL",
+} as const;
+const choice = ref<keyof typeof choices>("markdown");
 const packageId = ref("");
 
 const pageUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  return `${window.location.origin}/package/${encodeURIComponent(
-    packageId.value,
-  )}`;
+  return `${window.location.origin}/package/${encodeURIComponent(packageId.value)}`;
 });
 const badgeUrl = computed(() => {
   if (!packageId.value) {
     return "";
   }
-  return `${window.location.origin}/badge/v/${encodeURIComponent(
-    packageId.value,
-  )}`;
+  return `${window.location.origin}/badge/v/${encodeURIComponent(packageId.value)}`;
 });
 const markdownCode = computed(() => {
   if (!packageId.value) {
@@ -35,6 +37,8 @@ const htmlCode = computed(() => {
   }
   return `<a href="${pageUrl.value}"><img src="${badgeUrl.value}" alt="AviUtl2 Catalog"></a>`;
 });
+
+const debouncedBadgeUrl = debouncedComputed(500, () => badgeUrl.value);
 </script>
 
 <template>
@@ -50,22 +54,33 @@ const htmlCode = computed(() => {
 
     <Card un-space-y="4">
       <template #header>
-        <Switch :choices="['markdown', 'html']" v-model="choice">
+        <Switch :choices="Object.keys(choices)" v-model="choice">
           <template #markdown>Markdown</template>
           <template #html>HTML</template>
+          <template #url>URL</template>
         </Switch>
       </template>
 
-      <div un-space-y="4">
+      <div v-if="choice === 'markdown' || choice === 'html'" un-space-y="4">
         <p>以下のコードをコピーして、READMEなどに貼り付けてください。</p>
         <CodeBlock :code="choice === 'markdown' ? markdownCode : htmlCode" />
-
-        <p>
-          プレビュー：
-          <img v-if="packageId" :src="badgeUrl" alt="AviUtl2 Catalog Badge" un-inline-block />
-          <span v-else>パッケージIDを入力してください。</span>
-        </p>
       </div>
+      <div v-else-if="choice === 'url'" un-space-y="4">
+        <p>以下のURLをコピーして、バッジ画像のURLとして使用してください。</p>
+        <CodeBlock :code="badgeUrl || 'パッケージIDを入力してください。'" />
+        <p>以下のURLにアクセスすると、カタログを開くページに移動します。</p>
+        <CodeBlock :code="pageUrl || 'パッケージIDを入力してください。'" />
+      </div>
+      <p>
+        プレビュー：
+        <img
+          v-if="debouncedBadgeUrl"
+          :src="debouncedBadgeUrl"
+          alt="AviUtl2 Catalog Badge"
+          un-inline-block
+        />
+        <span v-else>（なし）</span>
+      </p>
     </Card>
   </div>
 </template>

@@ -48,13 +48,13 @@ app.get("/api/badge/:name", async (c) => {
 
 app.get("/badge/v/:packageName", (c) => {
   const { packageName } = c.req.param();
-  const baseUrl = new URL(c.req.url).origin;
-  // Encode packageName for use in URL path
+  const url = new URL(c.req.url);
+  const baseUrl =
+    // NOTE: shields.ioはhttpsでしか読み込めないので、httpsでアクセスされた場合（=Branch Preview）でのみオリジンを使う
+    url.protocol === "https:" ? url.origin : "https://aviutl2-catalog-badge.sevenc7c.workers.dev";
   const apiUrl = `${baseUrl}/api/badge/${encodeURIComponent(packageName)}`;
-  // Encode the complete API URL for use as a query parameter
   const shieldsUrl = new URL("https://img.shields.io/endpoint");
   shieldsUrl.searchParams.set("url", apiUrl);
-  // Delegate extra query parameters from the original request
   const requestUrl = new URL(c.req.url);
   for (const [key, value] of requestUrl.searchParams) {
     shieldsUrl.searchParams.set(key, value);
